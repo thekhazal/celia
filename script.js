@@ -100,7 +100,7 @@ function toggleBackgroundMusic() {
 function speak(text) {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'sv-SE';
-    speechSynthesis.speak(utterance);
+    speechSynthesis.speak(utterance);resultText
 }
 
 function showResult(message, isCorrect) {
@@ -112,7 +112,7 @@ function showResult(message, isCorrect) {
 
     setTimeout(() => {
         resultText.textContent = '';
-        resultValue.style.backgroundColor = '#007bff';
+        //resultValue.style.backgroundColor = '#007bff';
     }, 1500);
 }
 

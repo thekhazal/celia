@@ -108,7 +108,7 @@ h1 {
 .result-value {
     width: 100px;
     height: 100px;
-    background-color: yellowgreen;
+    background-color: #28a745;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -117,4 +117,3 @@ h1 {
     color: #fff;
     text-align: center;
 }
-
