@@ -5,7 +5,23 @@ body {
     padding: 0;
 }
 
+.user-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
 .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -60,14 +76,8 @@ h1 {
     background-color: #0056b3;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
-}
-
 .card {
-    width: calc(33.33% - 20px); /* Adjust the spacing as needed */
+    width: calc(33.33% - 20px); Adjust the spacing as needed
     padding-top: calc(33.33% - 20px); /* Maintain aspect ratio */
     background-color: #007bff;
     border-radius: 10px;
@@ -82,12 +92,12 @@ h1 {
     margin: 10px; /* Add margin between cards */
 }
 
-
-
 .result-container {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    padding: 20px;
 }
 
 .result-text {
@@ -98,7 +108,7 @@ h1 {
 .result-value {
     width: 100px;
     height: 100px;
-    background-color: #007bff;
+    background-color: yellowgreen;
     border-radius: 10px;
     display: flex;
     align-items: center;

@@ -8,10 +8,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container" id="grid">
-        <header>
-            <h1>Nummerspelet</h1>
-        </header>
+    <div class="user-controls" id="user-controls">
+        <label for="volumeControl">Volym:</label>
+        <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.5">
+        <label for="musicCheckbox">Bakgrundsmusik:</label>
+        <input type="checkbox" id="musicCheckbox" checked>
+        <br>
+    </div>
+    <header>
+        <h1>Celias nummerspel!</h1>
+    </header>
+    <br>
+    <div class="container" id="container">
+        
         <div class="game-controls">
             <div class="range-inputs">
                 <label for="minRange">Minst</label>
@@ -21,13 +30,14 @@
             </div>
             <button id="generateButton" class="btn">Generera</button>
         </div>
-        <div id="grid" class="grid">
-            <!-- Kort kommer att dynamiskt läggas till här -->
-        </div>
-        <div class="result-container">
-            <p id="resultText" class="result-text"></p>
-            <div id="resultValue" class="result-value"></div>
-        </div>
+    </div>
+    <div id="grid" class="grid">
+        <!-- Kort kommer att dynamiskt läggas till här -->
+    </div>
+
+    <div class="result-container" id="result-container">
+        <p id="resultText" class="result-text"></p>
+        <div id="resultValue" class="result-value"></div>
     </div>
 
     <audio id="clickSound" src="click_sound.mp3"></audio>
