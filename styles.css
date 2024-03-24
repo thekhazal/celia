@@ -77,7 +77,7 @@ h1 {
 }
 
 .card {
-    width: calc(33.33% - 20px); Adjust the spacing as needed
+    width: calc(33.33% - 20px); /* Adjust the spacing as needed */
     padding-top: calc(33.33% - 20px); /* Maintain aspect ratio */
     background-color: #007bff;
     border-radius: 10px;
