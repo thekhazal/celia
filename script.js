@@ -115,3 +115,4 @@ function showResult(message, isCorrect) {
         resultValue.style.backgroundColor = '#007bff';
     }, 1500);
 }
+
