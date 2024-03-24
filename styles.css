@@ -6,8 +6,10 @@ body {
 }
 
 .container {
-    max-width: 800px;
-    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
 }
 
@@ -77,6 +79,7 @@ h1 {
     cursor: pointer;
     transition: background-color 0.3s ease;
     text-align: center; /* Center the text */
+    margin: 10px; /* Add margin between cards */
 }
 
 
