@@ -1,11 +1,16 @@
+// Variable to store the latest button click value
 let latestButtonClickValue = null;
 
+// Function to run when the DOM content is loaded
 document.addEventListener('DOMContentLoaded', function () {
-     // Event listener for the generate button
-     document.getElementById('generateButton').addEventListener('click', function () {
+    // Event listener for the generate button
+    document.getElementById('generateButton').addEventListener('click', function () {
+        // Get the input type from the generate button
         const inputType = document.getElementById('generateButton').value;
+        // Generate random values based on the input type
         generateRandom(inputType);
-        latestButtonClickValue = inputType; // Store the latest button click value
+        // Store the latest button click value
+        latestButtonClickValue = inputType;
     });
 
     // Event listener for the background music checkbox
@@ -15,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('volumeControl').addEventListener('input', toggleBackgroundMusic);
 });
 
+// Function to toggle background music based on checkbox state
 function toggleBackgroundMusic() {
     const musicCheckbox = document.getElementById('musicCheckbox');
     const volumeControl = document.getElementById('volumeControl');
@@ -27,19 +33,23 @@ function toggleBackgroundMusic() {
     }
 }
 
+// Function to speak text using speech synthesis
 function speak(text) {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'sv-SE';
     speechSynthesis.speak(utterance);
 }
 
+// Function to play audio
 function playAudio(audioId, volume) {
     const audio = document.getElementById(audioId);
     audio.volume = volume;
     audio.currentTime = 0;
     audio.play();
 }
-function generateRandom(inputType) {
+
+// Function to generate random values based on input type
+async function generateRandom(inputType) {
     const grid = document.getElementById('grid');
     grid.innerHTML = '';
 
@@ -61,51 +71,98 @@ function generateRandom(inputType) {
         case 'FIGURES':
             values = getRandomFigures(9);
             break;
+        case 'ANIMALS':
+            values = await getRandomAnimalImages(9);
+            break;
         default:
             console.error('Invalid input type');
             return;
     }
 
-    values.forEach(value => {
+    values.forEach((value, index) => {
         const card = document.createElement('div');
         card.className = 'card';
-        card.textContent = value;
+        if (inputType === 'ANIMALS') {
+            const img = document.createElement('img');
+            img.src = value;
+            img.alt = 'Animal';
+            card.appendChild(img);
+            // Set the resultValue div to display the same image
+            if (index === 0) {
+                document.getElementById('resultValue').innerHTML = `<img src="${value}" alt="Animal">`;
+            }
+        } else {
+            card.textContent = value;
+        }
         card.onclick = function () {
             playAudio('clickSound', 0.5);
-            
-            if (latestButtonClickValue == 123 & parseInt(card.textContent) === values[0]) { // Convert card.textContent to integer
-                showResult('Grattis! Du matchade värdet.', true);
-                card.style.backgroundColor = '#28a745';
-                playAudio('matchSound', 0.5);
-                setTimeout(() => {
-                    resetCards(grid);
-                }, 1000);
-            }
 
-            else if (card.textContent === values[0]) {
-                showResult('Grattis! Du matchade värdet.', true);
-                card.style.backgroundColor = '#28a745';
-                playAudio('matchSound', 0.5);
-                setTimeout(() => {
-                    resetCards(grid);
-                }, 1000);
-            } else {
-                showResult('Tyvärr, försök igen.', false);
-                card.style.backgroundColor = '#dc3545';
-                setTimeout(() => {
-                    card.style.backgroundColor = '#007bff';
-                }, 1000);
+            if (inputType === 'ANIMALS') {
+                // For images, compare the src attribute of the clicked image with the first value of the array
+                if (card.querySelector('img').src === values[0]) {
+                    showResult('Grattis! Du matchade värdet.', true);
+                    card.style.backgroundColor = '#28a745';
+                    playAudio('matchSound', 0.5);
+                    setTimeout(() => {
+                        resetCards(grid);
+                    }, 1000);
+                } else {
+                    showResult('Tyvärr, försök igen.', false);
+                    card.style.backgroundColor = '#dc3545';
+                    setTimeout(() => {
+                        card.style.backgroundColor = '#007bff';
+                    }, 1000);
+                }
+            } 
+            else if (inputType === '123') {
+                // For numbers compare the text content of the clicked card with the first value of the array
+                if (parseInt(card.textContent) === values[0]) {
+                    showResult('Grattis! Du matchade värdet.', true);
+                    card.style.backgroundColor = '#28a745';
+                    playAudio('matchSound', 0.5);
+                    setTimeout(() => {
+                        resetCards(grid);
+                    }, 1000);
+                } else {
+                    showResult('Tyvärr, försök igen.', false);
+                    card.style.backgroundColor = '#dc3545';
+                    setTimeout(() => {
+                        card.style.backgroundColor = '#007bff';
+                    }, 1000);
+                }
+            }
+            else {
+                // For letters, and figures, compare the text content of the clicked card with the first value of the array
+                if (card.textContent === values[0]) {
+                    showResult('Grattis! Du matchade värdet.', true);
+                    card.style.backgroundColor = '#28a745';
+                    playAudio('matchSound', 0.5);
+                    setTimeout(() => {
+                        resetCards(grid);
+                    }, 1000);
+                } else {
+                    showResult('Tyvärr, försök igen.', false);
+                    card.style.backgroundColor = '#dc3545';
+                    setTimeout(() => {
+                        card.style.backgroundColor = '#007bff';
+                    }, 1000);
+                }
             }
         };
+
         grid.appendChild(card);
     });
 
-    speak('Hitta värdet: ' + values[0]);
-    document.getElementById('resultValue').textContent = values[0];
+    if (inputType !== 'ANIMALS') {
+        speak('Hitta värdet: ' + values[0]);
+        document.getElementById('resultValue').textContent = values[0];
+    }
 
     shuffleGrid(grid);
 }
 
+
+// Function to generate random letters
 function getRandomLetters(count) {
     const swedishAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ";
     const letters = [];
@@ -118,7 +175,13 @@ function getRandomLetters(count) {
     return letters;
 }
 
+// Function to generate random numbers within a range
 function getRandomNumbers(count, min, max) {
+    if (count > max - min + 1) {
+        console.error('Count exceeds range of numbers');
+        return [];
+    }
+
     const numbers = new Set();
     while (numbers.size < count) {
         const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -127,11 +190,32 @@ function getRandomNumbers(count, min, max) {
     return Array.from(numbers);
 }
 
+
+// Function to generate random figures
 function getRandomFigures(count) {
-    const figures = ['♠', '♣', '♥', '♦', '★', '☆', '▲', '◆', '○']; // Sample figures
+    /* const figures = ['♠', '♣', '♥', '♦', '★', '☆', '▲', '◆', '○']; // Sample figures*/
+    const figures = [
+        '🔴', '🔵', '⚫', '⚪', '🔶', '🔷', '🔸', '🔹', '🔺', '🔻', '🟠', '🟡', '🟢', '🟣', '🟤', '🟥', '🟦', '🟧', '🟨', '🟩',
+        '🟪', '🟫', '⬛', '⬜', '◼', '◻', '◾', '◽', '▪', '▫', '🟥', '🟧', '🟩', '🟦', '🟨', '🟪', '🟫', '⬛', '⬜', '◼', '◻', '◾', '◽', '▪', '▫'
+    ];
     return shuffleArray(figures).slice(0, count);
 }
 
+async function getRandomAnimalImages(count) {
+    const images = [];
+    try {
+        for (let i = 0; i < count; i++) {
+            const response = await fetch(`https://picsum.photos/200/300?random=${Math.random()}`);
+            const imageUrl = response.url;
+            images.push(imageUrl);
+        }
+    } catch (error) {
+        console.error('Error fetching animal images:', error);
+    }
+    return images;
+}
+
+// Function to shuffle array elements
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -139,29 +223,34 @@ function shuffleArray(array) {
     }
     return array;
 }
+
+// Function to shuffle grid elements
 function shuffleGrid(grid) {
     for (let i = grid.children.length; i >= 0; i--) {
         grid.appendChild(grid.children[Math.random() * i | 0]);
     }
 }
 
+// Function to show result message and update result value color
 function showResult(message, isCorrect) {
     const resultText = document.getElementById('resultText');
     const resultValue = document.getElementById('resultValue');
-
     resultText.textContent = message;
     resultValue.style.backgroundColor = isCorrect ? '#28a745' : '#dc3545';
 
     setTimeout(() => {
         resultText.textContent = '';
-        //resultValue.style.backgroundColor = '#007bff';
+        // Reset result value background color
+        resultValue.style.backgroundColor = '#007bff';
     }, 1500);
 }
 
+// Function to reset card colors and generate new values
 function resetCards(grid) {
     const cards = grid.querySelectorAll('.card');
     cards.forEach(card => {
         card.style.backgroundColor = '#007bff';
     });
+    // Generate new values based on the latest button click value
     generateRandom(latestButtonClickValue);
 }
