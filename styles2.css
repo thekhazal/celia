@@ -1,0 +1,81 @@
+/* Landningssida */
+.landing-page {
+    position: relative;
+    width: 320px;
+    height: 568px;
+    left: 100px;
+    top: 68px;
+    background: #FFFFFF;
+  }
+  
+  /* Group 10 */
+  .group-10 {
+    position: absolute;
+    width: 288px;
+    height: 104px;
+    left: 16px;
+    top: 296px;
+  }
+  
+  /* Rectangle 9 */
+  .rectangle-9 {
+    position: absolute;
+    width: 288px;
+    height: 104px;
+    left: 16px;
+    top: 296px;
+    background: #E6E6FF;
+    border-radius: 10px;
+  }
+  
+  /* Rectangle 12 */
+  .rectangle-12 {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    left: 32px;
+    top: 318px;
+    background: #FFFFFF;
+    border-radius: 20px;
+  }
+  
+  /* Siffror */
+  .siffror {
+    position: absolute;
+    width: 95px;
+    height: 14px;
+    left: calc(50% - 95px/2 - 4.5px);
+    top: 331px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+  }
+  
+  /* ABC */
+  .abc {
+    position: absolute;
+    width: 41px;
+    height: 24px;
+    left: 42px;
+    top: 336px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+  }
+  
+  /* Group 12 */
+  .group-12 {
+    position: absolute;
+    width: 288px;
+    height: 104px;
+    left: 16px;
+    top: 416px;
+  }
