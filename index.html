@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <nav class="menu">
         <ul>
@@ -22,7 +24,7 @@
                     <input type="checkbox" id="musicCheckbox">
                     <br>
                 </div>
-             </li>
+            </li>
         </ul>
     </nav>
     <header>
@@ -30,7 +32,7 @@
     </header>
     <br>
     <div class="container" id="container">
-        
+
         <div class="game-controls">
             <div class="range-inputs">
                 <label for="minRange">Minst</label>
@@ -41,13 +43,14 @@
             <button id="generateButton" value="123" class="btn">Generera</button>
         </div>
     </div>
-    <div id="grid" class="grid">
-        <!-- Kort kommer att dynamiskt läggas till här -->
-    </div>
 
     <div class="result-container" id="result-container">
         <p id="resultText" class="result-text"></p>
         <div id="resultValue" class="result-value"></div>
+    </div>
+
+    <div id="grid" class="grid">
+        <!-- Kort kommer att dynamiskt läggas till här -->
     </div>
 
     <audio id="clickSound" src="click_sound.mp3"></audio>
@@ -56,4 +59,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

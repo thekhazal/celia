@@ -153,10 +153,31 @@ async function generateRandom(inputType) {
         grid.appendChild(card);
     });
 
-    if (inputType !== 'ANIMALS') {
+    switch (inputType) {
+        case 'ABC':
+            speak('Hitta bokstaven: ' + values[0]);
+            document.getElementById('resultValue').textContent = values[0];
+            break;
+        case '123':
+            speak('Hitta siffran: ' + values[0]);
+            document.getElementById('resultValue').textContent = values[0];
+            break;
+        case 'FIGURES':
+            speak('Hitta figuren: ' + values[0]);
+            document.getElementById('resultValue').textContent = values[0];
+            break;
+        case 'ANIMALS':
+            speak('Hitta bilden: ');
+            break;
+        default:
+            console.error('Invalid input type');
+        return;
+    }
+
+/*     if (inputType !== 'ANIMALS') {
         speak('Hitta värdet: ' + values[0]);
         document.getElementById('resultValue').textContent = values[0];
-    }
+    } */
 
     shuffleGrid(grid);
 }
@@ -205,7 +226,7 @@ async function getRandomAnimalImages(count) {
     const images = [];
     try {
         for (let i = 0; i < count; i++) {
-            const response = await fetch(`https://picsum.photos/200/300?random=${Math.random()}`);
+            const response = await fetch("https://loremflickr.com/300/300/animals?");
             const imageUrl = response.url;
             images.push(imageUrl);
         }
