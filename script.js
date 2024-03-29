@@ -226,11 +226,11 @@ function getRandomFigures(count) {
 // Function to generate random figures
 function getRandomWords(count) {
     const words = [
-        "hej", "välkommen", "tack", "snäll", "glad", "bra", "godis", "leka", "skola", "bok",
-        "tåg", "bil", "boll", "cykel", "glass", "hund", "katt", "fisk", "apa", "häst",
-        "apa", "fågel", "blomma", "nalle", "vatten", "mjölk", "frukt", "sol", "måne", "stjärna",
-        "regn", "snö", "vind", "varm", "kall", "klänning", "byxor", "skor", "sockor", "hjärta",
-        "hand", "ben", "mun", "näsa", "öga", "öra", "mage", "huvud", "tand"
+        "HEJ", "VÄLKOMMEN", "TACK", "SNÄLL", "GLAD", "BRA", "GODIS", "LEKA", "SKOLA", "BOK",
+        "TÅG", "BIL", "BOLL", "CYKEL", "GLASS", "HUND", "KATT", "FISK", "APA", "HÄST",
+        "APA", "FÅGEL", "BLOMMA", "NALLE", "VATTEN", "MJÖLK", "FRUKT", "SOL", "MÅNE", "STJÄRNA",
+        "REGN", "SNÖ", "VIND", "VARM", "KALL", "KLÄNNING", "BYXOR", "SKOR", "SOCKOR", "HJÄRTA",
+        "HAND", "BEN", "MUN", "NÄSA", "ÖGA", "ÖRA", "MAGE", "HUVUD", "TAND"
     ];
     return shuffleArray(words).slice(0, count);
 }
