@@ -93,6 +93,7 @@ async function generateRandom(inputType) {
             // Set the resultValue div to display the same image
             if (index === 0) {
                 document.getElementById('resultValue').innerHTML = `<img src="${value}" alt="Animal">`;
+                document.getElementById('resultValue').classList.add('has-value');
             }
         } else {
             card.textContent = value;
@@ -160,18 +161,22 @@ async function generateRandom(inputType) {
         case 'ABC':
             speak('Hitta bokstaven: ' + values[0]);
             document.getElementById('resultValue').textContent = values[0];
+            document.getElementById('resultValue').classList.add('has-value');
             break;
         case '123':
             speak('Hitta siffran: ' + values[0]);
             document.getElementById('resultValue').textContent = values[0];
+            document.getElementById('resultValue').classList.add('has-value');
             break;
         case 'FIGURES':
             speak('Hitta figuren: ' + values[0]);
             document.getElementById('resultValue').textContent = values[0];
+            document.getElementById('resultValue').classList.add('has-value');
             break;
         case 'WORDS':
             speak('Hitta ordet: '+ values[0]);
             document.getElementById('resultValue').textContent = values[0];
+            document.getElementById('resultValue').classList.add('has-value');
             break;
         case 'ANIMALS':
             speak('Hitta bilden: ');
@@ -180,7 +185,6 @@ async function generateRandom(inputType) {
             console.error('Invalid input type');
         return;
     }
-
     shuffleGrid(grid);
 }
 
@@ -213,7 +217,6 @@ function getRandomNumbers(count, min, max) {
     return Array.from(numbers);
 }
 
-
 // Function to generate random figures
 function getRandomFigures(count) {
     const figures = [
@@ -239,7 +242,7 @@ async function getRandomAnimalImages(count) {
     const images = [];
     try {
         for (let i = 0; i < count; i++) {
-            const response = await fetch("https://loremflickr.com/300/300/animals?");
+            const response = await fetch("https://loremflickr.com/200/150/animals?");
             const imageUrl = response.url;
             images.push(imageUrl);
         }
