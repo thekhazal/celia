@@ -174,11 +174,6 @@ async function generateRandom(inputType) {
         return;
     }
 
-/*     if (inputType !== 'ANIMALS') {
-        speak('Hitta värdet: ' + values[0]);
-        document.getElementById('resultValue').textContent = values[0];
-    } */
-
     shuffleGrid(grid);
 }
 
@@ -257,12 +252,12 @@ function showResult(message, isCorrect) {
     const resultText = document.getElementById('resultText');
     const resultValue = document.getElementById('resultValue');
     resultText.textContent = message;
-    resultValue.style.backgroundColor = isCorrect ? '#28a745' : '#dc3545';
+    /* resultValue.style.backgroundColor = isCorrect ? '#28a745' : '#dc3545'; */
 
     setTimeout(() => {
         resultText.textContent = '';
         // Reset result value background color
-        resultValue.style.backgroundColor = '#007bff';
+        /* resultValue.style.backgroundColor = '#007bff'; */
     }, 1500);
 }
 
