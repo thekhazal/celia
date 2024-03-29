@@ -71,6 +71,9 @@ async function generateRandom(inputType) {
         case 'FIGURES':
             values = getRandomFigures(9);
             break;
+        case 'WORDS':
+            values = getRandomWords(9);
+            break;
         case 'ANIMALS':
             values = await getRandomAnimalImages(9);
             break;
@@ -166,6 +169,10 @@ async function generateRandom(inputType) {
             speak('Hitta figuren: ' + values[0]);
             document.getElementById('resultValue').textContent = values[0];
             break;
+        case 'WORDS':
+            speak('Hitta ordet: '+ values[0]);
+            document.getElementById('resultValue').textContent = values[0];
+            break;
         case 'ANIMALS':
             speak('Hitta bilden: ');
             break;
@@ -209,12 +216,23 @@ function getRandomNumbers(count, min, max) {
 
 // Function to generate random figures
 function getRandomFigures(count) {
-    /* const figures = ['♠', '♣', '♥', '♦', '★', '☆', '▲', '◆', '○']; // Sample figures*/
     const figures = [
         '🔴', '🔵', '⚫', '⚪', '🔶', '🔷', '🔸', '🔹', '🔺', '🔻', '🟠', '🟡', '🟢', '🟣', '🟤', '🟥', '🟦', '🟧', '🟨', '🟩',
         '🟪', '🟫', '⬛', '⬜', '◼', '◻', '◾', '◽', '▪', '▫', '🟥', '🟧', '🟩', '🟦', '🟨', '🟪', '🟫', '⬛', '⬜', '◼', '◻', '◾', '◽', '▪', '▫'
     ];
     return shuffleArray(figures).slice(0, count);
+}
+
+// Function to generate random figures
+function getRandomWords(count) {
+    const words = [
+        "hej", "välkommen", "tack", "snäll", "glad", "bra", "godis", "leka", "skola", "bok",
+        "tåg", "bil", "boll", "cykel", "glass", "hund", "katt", "fisk", "apa", "häst",
+        "apa", "fågel", "blomma", "nalle", "vatten", "mjölk", "frukt", "sol", "måne", "stjärna",
+        "regn", "snö", "vind", "varm", "kall", "klänning", "byxor", "skor", "sockor", "hjärta",
+        "hand", "ben", "mun", "näsa", "öga", "öra", "mage", "huvud", "tand"
+    ];
+    return shuffleArray(words).slice(0, count);
 }
 
 async function getRandomAnimalImages(count) {
@@ -252,12 +270,9 @@ function showResult(message, isCorrect) {
     const resultText = document.getElementById('resultText');
     const resultValue = document.getElementById('resultValue');
     resultText.textContent = message;
-    /* resultValue.style.backgroundColor = isCorrect ? '#28a745' : '#dc3545'; */
 
     setTimeout(() => {
         resultText.textContent = '';
-        // Reset result value background color
-        /* resultValue.style.backgroundColor = '#007bff'; */
     }, 1500);
 }
 
